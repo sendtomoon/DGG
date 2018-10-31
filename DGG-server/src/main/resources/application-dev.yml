@@ -1,2 +1,62 @@
 server:
   port: 8888
+  
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://192.168.0.11:3306/recvice_ip
+    username: dgg
+    password: dgg
+    druid:
+      initial-size: 0
+      max-active: 8
+      min-idle: 0
+      max-wait: -1
+      not-full-timeout-retry-count: 0
+      validation-query: SELECT 1
+      validation-query-timeout: -1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      time-between-eviction-runs-millis: 60000
+      time-between-connect-error-millis: 500
+      min-evictable-idle-time-millis: 1800000
+      max-evictable-idle-time-millis: 25200000
+      phy-timeout-millis: -1
+      pool-prepared-statements: false
+      share-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 10
+      use-global-data-source-stat: false
+      # 开启 StatFilter，默认开启，可通过 'enabled: false' 关闭
+      stat:
+        enabled: true
+        log-slow-sql: true
+        slow-sql-millis: 1000
+      # 开启 Slf4jFilter
+      slf4j:
+        enabled: true
+        data-source-log-enabled: false
+        connection-log-enabled: false
+        statement-log-enabled: false
+        result-set-log-enabled: false
+      # 开启 WallFilter
+      wall:
+        enabled: true
+        log-violation: true
+        throw-exception: false
+        ## WallConfig 配置
+        config:
+          delete-where-none-check: true
+      # 开启 ConfigFilter
+      config:
+        enabled: true
+      # 开启 Web 监控
+      web-stat:
+        enabled: true
+      # 开启 Aop 监控
+      aop-stat:
+        enabled: true
+      # 开启监控页面
+      stat-view-servlet:
+        enabled: true
+  
