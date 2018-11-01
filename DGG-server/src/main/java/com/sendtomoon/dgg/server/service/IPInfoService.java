@@ -4,6 +4,6 @@ import com.sendtomoon.dgg.server.CommonVO;
 
 public interface IPInfoService {
 
-	CommonVO recviceIpInfo(String eventName,String ipAddr,String ipSource);
-	
+	CommonVO recviceIpInfo(String eventName, String ipAddr, String ipSource, String device);
+
 }
