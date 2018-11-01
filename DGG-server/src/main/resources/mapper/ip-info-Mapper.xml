@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sendtomoon.dgg.server.dao.IPInfoDAO">
+
+	<insert id="insertIPInfo" parameterType="ExampleDTO">
+		insert into
+		recvice_ip (id,event_name,ip_addr,ip_source_created_date)
+		values(#{id},#{eventName},#{ipAddr},#{ipSource},now())
+	</insert>
+
+</mapper>
