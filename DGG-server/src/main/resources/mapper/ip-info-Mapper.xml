@@ -4,8 +4,10 @@
 
 	<insert id="insertIPInfo" parameterType="IPInfoDTO">
 		insert into
-		recvice_ip (id,event_name,ip_addr,device,ip_source_created_date)
-		values(#{id},#{eventName},#{ipAddr},#{ipSource},#{device},now())
+		    recvice_ip 
+		(id,event_name,ip_addr,device,ip_source,created_date)
+		    values
+		(#{id},#{eventName},#{ipAddr},#{device},#{ipSource},now())
 	</insert>
 
 </mapper>
