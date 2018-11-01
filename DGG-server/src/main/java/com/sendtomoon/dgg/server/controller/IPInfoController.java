@@ -24,5 +24,7 @@ public class IPInfoController {
 			@RequestParam(value = "device", required = true) String device) {
 		return iif.recviceIpInfo(eventName, ipAddr, ipSource, device);
 	}
+	
+	
 
 }
