@@ -5,7 +5,7 @@
 	<groupId>com.sendtomoon</groupId>
 	<artifactId>DGG-server</artifactId>
 	<version>1.0</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<!-- Inherit defaults from Spring Boot -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
