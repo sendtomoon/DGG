@@ -25,6 +25,11 @@ public class IPInfoController {
 		return iif.recviceIpInfo(eventName, ipAddr, ipSource, device);
 	}
 	
-	
+	@RequestMapping(value = "/getdnslist")
+	@ResponseBody
+	public CommonVO getdnslist(@RequestParam(value = "name", required = false) String name,
+			@RequestParam(value = "ipAddr", required = false) String ipAddr) {
+		return iif.getdnslist(name, ipAddr);
+	}
 
 }

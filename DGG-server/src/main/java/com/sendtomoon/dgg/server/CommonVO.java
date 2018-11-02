@@ -5,6 +5,10 @@ public class CommonVO {
 	private String responseCode = "0";
 
 	private String responseMsg;
+	
+	public CommonVO() {
+		
+	}
 
 	public CommonVO(String responseCode, String responseMsg) {
 		this.responseCode = responseCode;
