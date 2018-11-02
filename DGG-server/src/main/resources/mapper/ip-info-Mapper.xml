@@ -40,7 +40,7 @@
 	           created_date <![CDATA[>]]>  #{endDate}
 	        </if>
 	        <if test="startDate != null and endDate != null">
-	          #{startDate} <![CDATA[<]]> created_date <![CDATA[<]]> #{endDate}
+	          created_date between #{startDate} and #{endDate}
 	        </if>
 	    </where>
 	        
