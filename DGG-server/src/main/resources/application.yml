@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: dgg-server
   profiles:
    # active: prd
     active: dev

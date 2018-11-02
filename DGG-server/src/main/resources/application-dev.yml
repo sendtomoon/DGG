@@ -7,5 +7,14 @@ spring:
     url: jdbc:mariadb://192.168.0.11:3306/dgg
     username: dgg
     password: dgg
+  cloud:
+    zookeeper:
+      enabled: true  # true:开启zookeeper外部化配置, false:读取本地配置; 需要将config.enabled,config.watcher.enabled同时设置
+      connect-string: 192.168.0.11:20081
+      config:
+        enabled: true
+      watcher:
+          enabled: false
+
 
   
