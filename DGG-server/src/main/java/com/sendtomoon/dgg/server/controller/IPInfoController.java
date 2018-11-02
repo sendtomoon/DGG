@@ -1,17 +1,20 @@
 package com.sendtomoon.dgg.server.controller;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sendtomoon.dgg.server.BaseController;
 import com.sendtomoon.dgg.server.CommonVO;
 import com.sendtomoon.dgg.server.service.IPInfoService;
 
 @Controller
 @RequestMapping(value = "/ip")
-public class IPInfoController {
+public class IPInfoController extends BaseController {
 
 	@Autowired
 	private IPInfoService iif;
@@ -24,12 +27,24 @@ public class IPInfoController {
 			@RequestParam(value = "device", required = true) String device) {
 		return iif.recviceIpInfo(eventName, ipAddr, ipSource, device);
 	}
-	
+
 	@RequestMapping(value = "/getdnslist")
 	@ResponseBody
 	public CommonVO getdnslist(@RequestParam(value = "name", required = false) String name,
 			@RequestParam(value = "ipAddr", required = false) String ipAddr) {
 		return iif.getdnslist(name, ipAddr);
+	}
+
+	@RequestMapping(value = "/getiprenewlist")
+	@ResponseBody
+	public CommonVO getIpRenewList(@RequestParam(value = "id", required = false) String id,
+			@RequestParam(value = "eventName", required = false) String eventName,
+			@RequestParam(value = "ipAddr", required = false) String ipAddr,
+			@RequestParam(value = "ipSource", required = false) String ipSource,
+			@RequestParam(value = "device", required = false) String device,
+			@RequestParam(value = "startDate", required = false) Date startDate,
+			@RequestParam(value = "endDate", required = false) Date endDate) {
+		return iif.getdnslist(id, eventName, ipAddr, ipSource, device, startDate, endDate);
 	}
 
 }

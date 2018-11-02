@@ -1,6 +1,7 @@
 package com.sendtomoon.dgg.server.service.impl;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,6 +69,24 @@ public class IPInfoServiceImpl implements IPInfoService {
 		map.put("Authorization", ssoKey);
 		map.put("Content-Type", "application/json");
 		return map;
+	}
+
+	@Override
+	public CommonVO getdnslist(String id, String eventName, String ipAddr, String ipSource, String device,
+			Date startDate, Date endDate) {
+		BatchVO<IPInfoDTO> vo = new BatchVO<IPInfoDTO>();
+		IPInfoDTO dto = new IPInfoDTO();
+		dto.setId(id);
+		dto.setDevice(device);
+		dto.setEventName(eventName);
+		dto.setIpAddr(ipAddr);
+		dto.setIpSource(ipSource);
+		dto.setStartDate(startDate);
+		dto.setEndDate(endDate);
+		List<IPInfoDTO> list = dao.getIpRenewList(dto);
+		vo.setDatas(list);
+		vo.setTotal(list.size());
+		return vo;
 	}
 
 }

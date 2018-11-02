@@ -2,8 +2,11 @@ spring:
   application:
     name: dgg-server
   profiles:
-      active: dev
+      active: prd
 godaddy:
   sso-key: sso-key dL3oxj5DL3Mn_WhAknzdqwB8aTStK98moZ6:XSk7ccXquXQwek1cFcw9uQ
   base-url: https://api.godaddy.com/v1/domains/sendtomoon.com/records
+mybatis:
+    type-aliases-package: com.sendtomoon.dgg.server.dto
+    mapper-locations: classpath:mapper/**/*Mapper.xml  #注意：一定要对应mapper映射xml文件的所在路径
 

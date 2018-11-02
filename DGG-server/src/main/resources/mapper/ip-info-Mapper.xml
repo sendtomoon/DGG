@@ -9,5 +9,42 @@
 		    values
 		(#{id},#{eventName},#{ipAddr},#{device},#{ipSource},now())
 	</insert>
+	
+	<select id="getIpRenewList" parameterType="IPInfoDTO" resultType="IPInfoDTO">
+	    select 
+	        id as id, 
+	        event_name as eventName,
+	        ip_addr as ipAddr,
+	        ip_source as ipSource,
+	        device as device, 
+	        created_date as createdDate
+	    from
+	        recvice_ip
+	    <where>
+	        <if test="id != null">
+	            id = #{id}
+	        </if>
+	        <if test="ipAddr != null">
+	            ip_addr = #{ipAddr}
+	        </if>
+	        <if test="ipSource != null">
+	            ip_source = #{ipSource}
+	        </if>
+	        <if test="device != null">
+	            device = #{device}
+	        </if>
+	        <if test="startDate != null and endDate == null">
+	           created_date <![CDATA[<]]>  #{startDate}
+	        </if>
+	        <if test="endDate != null and startDate == null">
+	           created_date <![CDATA[>]]>  #{endDate}
+	        </if>
+	        <if test="startDate != null and endDate != null">
+	          #{startDate} <![CDATA[<]]> created_date <![CDATA[<]]> #{endDate}
+	        </if>
+	    </where>
+	        
+	
+	</select>
 
 </mapper>
