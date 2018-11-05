@@ -1,11 +1,13 @@
 package com.sendtomoon.dgg.server.service.impl;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -54,14 +56,22 @@ public class IPInfoServiceImpl implements IPInfoService {
 			e.printStackTrace();
 		}
 		List<DNSInfoDTO> list = JSONArray.parseArray(json, DNSInfoDTO.class);
+		list = this.selectList(list, name, ipAddr);
 		vo.setDatas(list);
 		vo.setTotal(list.size());
 		return vo;
 	}
 
-	private Map<String, String> setParams() {
-		Map<String, String> map = new HashMap<String, String>();
-		return map;
+	private List<DNSInfoDTO> selectList(List<DNSInfoDTO> list, String name, String ipAddr) {
+		List<DNSInfoDTO> respList = new ArrayList<DNSInfoDTO>();
+		for (DNSInfoDTO dto : list) {
+			if(StringUtils.isNotBlank(dto.getName())&&StringUtils.isNotBlank(dto.getData())) {
+				if(name.equals(dto.getName())||ipAddr.equals(dto.getData())) {
+					respList.add(dto);
+				}
+			}
+		}
+		return respList;
 	}
 
 	private Map<String, String> setHeaders() {
