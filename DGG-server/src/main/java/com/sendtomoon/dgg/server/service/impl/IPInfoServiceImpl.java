@@ -65,8 +65,8 @@ public class IPInfoServiceImpl implements IPInfoService {
 	private List<DNSInfoDTO> selectList(List<DNSInfoDTO> list, String name, String ipAddr) {
 		List<DNSInfoDTO> respList = new ArrayList<DNSInfoDTO>();
 		for (DNSInfoDTO dto : list) {
-			if(StringUtils.isNotBlank(dto.getName())&&StringUtils.isNotBlank(dto.getData())) {
-				if(name.equals(dto.getName())||ipAddr.equals(dto.getData())) {
+			if ((null != dto.getName() && null != dto.getData())) {
+				if (name.equals(dto.getName()) || ipAddr.equals(dto.getData())) {
 					respList.add(dto);
 				}
 			}
