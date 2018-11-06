@@ -56,7 +56,9 @@ public class IPInfoServiceImpl implements IPInfoService {
 			e.printStackTrace();
 		}
 		List<DNSInfoDTO> list = JSONArray.parseArray(json, DNSInfoDTO.class);
-		list = this.selectList(list, name, ipAddr);
+		if (StringUtils.isNotEmpty(name) || StringUtils.isNotEmpty(ipAddr)) {
+			list = this.selectList(list, name, ipAddr);
+		}
 		vo.setDatas(list);
 		vo.setTotal(list.size());
 		return vo;
