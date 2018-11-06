@@ -15,5 +15,3 @@ mybatis:
 #    com:
 #      sendtomoon:
 #        dgg: DEBUG
-logging:
-  config: classpath:logback.xml
