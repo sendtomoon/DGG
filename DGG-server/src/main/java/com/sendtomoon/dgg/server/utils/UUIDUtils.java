@@ -1,4 +1,4 @@
-package com.sendtomoon.dgg.server;
+package com.sendtomoon.dgg.server.utils;
 
 import java.util.UUID;
 

@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sendtomoon.dgg.server.BaseController;
-import com.sendtomoon.dgg.server.CommonVO;
+import com.sendtomoon.dgg.server.base.BaseController;
 import com.sendtomoon.dgg.server.service.IPInfoService;
+import com.sendtomoon.dgg.server.utils.CommonVO;
 
 @Controller
 @RequestMapping(value = "/ip")

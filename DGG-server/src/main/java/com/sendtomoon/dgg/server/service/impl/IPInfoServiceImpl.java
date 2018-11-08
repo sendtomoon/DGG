@@ -12,15 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.sendtomoon.dgg.server.HttpUtils;
 import com.alibaba.fastjson.JSONArray;
-import com.sendtomoon.dgg.server.BatchVO;
-import com.sendtomoon.dgg.server.CommonVO;
-import com.sendtomoon.dgg.server.UUIDUtils;
 import com.sendtomoon.dgg.server.dao.IPInfoDAO;
 import com.sendtomoon.dgg.server.dto.DNSInfoDTO;
 import com.sendtomoon.dgg.server.dto.IPInfoDTO;
 import com.sendtomoon.dgg.server.service.IPInfoService;
+import com.sendtomoon.dgg.server.utils.BatchVO;
+import com.sendtomoon.dgg.server.utils.CommonVO;
+import com.sendtomoon.dgg.server.utils.HttpUtils;
+import com.sendtomoon.dgg.server.utils.UUIDUtils;
 
 @Service
 public class IPInfoServiceImpl implements IPInfoService {

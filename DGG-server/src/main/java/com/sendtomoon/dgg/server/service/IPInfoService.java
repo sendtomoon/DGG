@@ -2,7 +2,7 @@ package com.sendtomoon.dgg.server.service;
 
 import java.util.Date;
 
-import com.sendtomoon.dgg.server.CommonVO;
+import com.sendtomoon.dgg.server.utils.CommonVO;
 
 public interface IPInfoService {
 
