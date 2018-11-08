@@ -138,14 +138,13 @@
         <appender-ref ref="STDOUT" />
     </root>
     
-<!--     <appender name="DB" class="ch.qos.logback.classic.db.DBAppender"> -->
-<!--         <connectionSource class="ch.qos.logback.core.db.DataSourceConnectionSource"> -->
-<!--            <dataSource class="org.apache.commons.dbcp2.BasicDataSource"> -->
-<!--               <driverClass>org.mariadb.jdbc.Driver</driverClass> -->
-<!--               <url>jdbc:mariadb://192.168.0.11:3306/dgg_log</url> -->
-<!--               <user>dgg_log</user> -->
-<!--               <password>dgg_log</password> -->
-<!--             </dataSource> -->
-<!--         </connectionSource> -->
-<!--   </appender> -->
+    <appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
+        <connectionSource class="ch.qos.logback.core.db.DataSourceConnectionSource">
+              <driverClass>org.mariadb.jdbc.Driver</driverClass>
+              <url>jdbc:mysql://192.168.0.11:3306/dgg_log</url>
+              <user>dgg_log</user>
+              <password>dgg_log</password>
+        </connectionSource>
+       <sqlDialect class="ch.qos.logback.core.db.dialect.MySQLDialect" />
+  </appender>
 </configuration>

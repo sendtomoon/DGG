@@ -2,6 +2,8 @@ package com.sendtomoon.dgg.server.dto;
 
 import java.util.Date;
 
+import com.sendtomoon.dgg.server.base.BaseDTO;
+
 public class IPInfoDTO extends BaseDTO {
 
 	/**

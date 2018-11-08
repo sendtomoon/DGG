@@ -1,5 +1,7 @@
 package com.sendtomoon.dgg.server.dto;
 
+import com.sendtomoon.dgg.server.base.BaseDTO;
+
 public class DNSInfoDTO extends BaseDTO {
 	/**
 	 * 

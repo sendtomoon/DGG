@@ -1,4 +1,4 @@
-package com.sendtomoon.dgg.server.dto;
+package com.sendtomoon.dgg.server.base;
 
 import java.io.Serializable;
 
