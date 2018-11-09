@@ -122,6 +122,18 @@
 			<level>info</level>
 		</filter>
 	</appender>
+	
+	<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
+		<connectionSource	class="ch.qos.logback.core.db.DataSourceConnectionSource">
+			<dataSource class="org.mariadb.jdbc.MariaDbPoolDataSource">
+				<serverName>192.168.0.11</serverName>
+				<port>3306</port>
+				<databaseName>dgg_log</databaseName>
+				<user>dgg_log</user>
+				<password>dgg_log</password>
+			</dataSource>
+		</connectionSource>
+	</appender>
 
 	<logger name="org.springframework" level="info" />
 	<logger name="org.mybatis" level="info" />
@@ -134,17 +146,7 @@
 
 		<!-- 生产环境将请stdout,testfile去掉 -->
 		<appender-ref ref="STDOUT" />
+		<appender-ref ref="DB" />
 	</root>
 
-	<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
-		<connectionSource	class="ch.qos.logback.core.db.DataSourceConnectionSource">
-			<dataSource class="org.mariadb.jdbc.MariaDbPoolDataSource">
-				<serverName>192.168.0.11</serverName>
-				<port>3306</port>
-				<databaseName>dgg_log</databaseName>
-				<user>dgg_log</user>
-				<password>dgg_log</password>
-			</dataSource>
-		</connectionSource>
-	</appender>
 </configuration>

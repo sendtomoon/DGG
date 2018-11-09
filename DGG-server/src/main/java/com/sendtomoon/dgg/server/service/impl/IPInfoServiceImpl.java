@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.sendtomoon.dgg.server.base.BaseService;
 import com.sendtomoon.dgg.server.dao.IPInfoDAO;
 import com.sendtomoon.dgg.server.dto.DNSInfoDTO;
 import com.sendtomoon.dgg.server.dto.IPInfoDTO;
@@ -23,7 +25,7 @@ import com.sendtomoon.dgg.server.utils.HttpUtils;
 import com.sendtomoon.dgg.server.utils.UUIDUtils;
 
 @Service
-public class IPInfoServiceImpl implements IPInfoService {
+public class IPInfoServiceImpl extends BaseService implements IPInfoService {
 
 	@Autowired
 	private IPInfoDAO dao;
@@ -103,8 +105,51 @@ public class IPInfoServiceImpl implements IPInfoService {
 
 	@Override
 	public CommonVO renewdns(String dns, String name, String ipAddr) {
-		// TODO Auto-generated method stub
-		return null;
+		ipAddr = this.cutSpace(ipAddr);
+		if (!this.isIP(ipAddr)) {
+			return new CommonVO("", "IP地址格式错误");
+		}
+		final String url = this.url + "/records/" + dns + "/" + name;
+		String json = "[{\"data\":\"" + ipAddr + "\"}]";
+		JSONObject result = null;
+		try {
+			logger.info("renewdns-param:" + url + ";" + json);
+			result = HttpUtils.putInvokeHttp(url, null, json, this.setHeaders());
+			logger.info("renewdns-result:" + result.toJSONString());
+		} catch (IOException e) {
+			logger.error("renewdns-request-error:" + e);
+			return new CommonVO("", "更新失败");
+		}
+		return new CommonVO("更新成功");
+	}
+
+	/**
+	 * 自己写一个不用正则的IP地址校验方法
+	 * 
+	 * @param ip
+	 * @return
+	 */
+	private boolean isIP(String ip) {
+		try {
+			String[] iparr = ip.split("\\.");
+			if (iparr.length != 4) {
+				return false;
+			}
+			for (String ipPart : iparr) {
+				int i = Integer.valueOf(ipPart);
+				if (0 > i && i > 255) {
+					return false;
+				}
+			}
+		} catch (Exception e) {
+			logger.error("isIP-error:", e);
+			return false;
+		}
+		return true;
+	}
+
+	private String cutSpace(String ip) {
+		return ip.replace(" ", "");
 	}
 
 }
