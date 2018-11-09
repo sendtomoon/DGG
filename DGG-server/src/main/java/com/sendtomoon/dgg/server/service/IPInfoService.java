@@ -15,4 +15,6 @@ public interface IPInfoService {
 
 	CommonVO renewdns(String dns, String name, String ipAddr);
 
+	CommonVO getdnsname(String dns, String name);
+
 }

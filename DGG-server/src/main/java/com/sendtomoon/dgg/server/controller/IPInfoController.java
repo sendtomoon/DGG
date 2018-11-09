@@ -54,5 +54,12 @@ public class IPInfoController extends BaseController {
 			@RequestParam(value = "ipAddr", required = true) String ipAddr) {
 		return iif.renewdns(dns, name, ipAddr);
 	}
+	
+	@RequestMapping(value = "/getdnsname")
+	@ResponseBody
+	public CommonVO getdnsname(@RequestParam(value = "dns", required = true) String dns,
+			@RequestParam(value = "name", required = true) String name) {
+		return iif.getdnsname(dns, name);
+	}
 
 }

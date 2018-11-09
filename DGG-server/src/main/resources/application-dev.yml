@@ -6,3 +6,10 @@ spring:
     password: dgg
 logging:
   config: classpath:logback-dev.xml
+logback:
+  dataSource:
+    serverName: 127.0.0.1
+    port: 3306
+    databaseName: dgg_log
+    user: dgg_log
+    password: dgg_log

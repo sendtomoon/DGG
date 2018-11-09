@@ -4,3 +4,12 @@ spring:
     url: jdbc:mariadb://127.0.0.1:3306/dgg
     username: dgg
     password: dgg
+logging:
+  config: classpath:logback-prd.xml
+logback:
+  dataSource:
+    serverName: 127.0.0.1
+    port: 3306
+    databaseName: dgg_log
+    user: dgg_log
+    password: dgg_log

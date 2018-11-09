@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sendtomoon.dgg.server.base.BaseService;
@@ -109,7 +110,7 @@ public class IPInfoServiceImpl extends BaseService implements IPInfoService {
 		if (!this.isIP(ipAddr)) {
 			return new CommonVO("", "IP地址格式错误");
 		}
-		final String url = this.url + "/records/" + dns + "/" + name;
+		final String url = this.url + "/" + dns + "/records/A/" + name;
 		String json = "[{\"data\":\"" + ipAddr + "\"}]";
 		JSONObject result = null;
 		try {
@@ -150,6 +151,24 @@ public class IPInfoServiceImpl extends BaseService implements IPInfoService {
 
 	private String cutSpace(String ip) {
 		return ip.replace(" ", "");
+	}
+
+	@Override
+	public CommonVO getdnsname(String dns, String name) {
+		final String url = this.url + "/" + dns + "/records/A/" + name;
+		String result = null;
+		try {
+			logger.info("renewdns-param:" + url);
+			result = HttpUtils.invokeHttpGet(url, null, this.setHeaders());
+			logger.info("renewdns-result:" + result);
+		} catch (IOException e) {
+			logger.error("renewdns-request-error:" + e);
+			return new CommonVO("", "获取失败");
+		}
+		BatchVO<DNSInfoDTO> respVO = new BatchVO<DNSInfoDTO>();
+		respVO.setDatas(JSON.parseArray(result, DNSInfoDTO.class));
+		respVO.setTotal(respVO.getDatas().size());
+		return respVO;
 	}
 
 }
