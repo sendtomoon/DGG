@@ -13,4 +13,6 @@ public interface IPInfoService {
 	CommonVO getdnslist(String id, String eventName, String ipAddr, String ipSource, String device, Date startDate,
 			Date endDate);
 
+	CommonVO renewdns(String dns, String name, String ipAddr);
+
 }

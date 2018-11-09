@@ -101,4 +101,10 @@ public class IPInfoServiceImpl implements IPInfoService {
 		return vo;
 	}
 
+	@Override
+	public CommonVO renewdns(String dns, String name, String ipAddr) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

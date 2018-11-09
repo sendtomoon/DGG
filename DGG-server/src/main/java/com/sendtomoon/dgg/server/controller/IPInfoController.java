@@ -47,4 +47,12 @@ public class IPInfoController extends BaseController {
 		return iif.getdnslist(id, eventName, ipAddr, ipSource, device, startDate, endDate);
 	}
 
+	@RequestMapping(value = "/renewdns")
+	@ResponseBody
+	public CommonVO renewdns(@RequestParam(value = "dns", required = true) String dns,
+			@RequestParam(value = "name", required = true) String name,
+			@RequestParam(value = "ipAddr", required = true) String ipAddr) {
+		return iif.renewdns(dns, name, ipAddr);
+	}
+
 }
