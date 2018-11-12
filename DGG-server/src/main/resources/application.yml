@@ -9,9 +9,3 @@ godaddy:
 mybatis:
     type-aliases-package: com.sendtomoon.dgg.server.dto
     mapper-locations: classpath:mapper/**/*Mapper.xml  #注意：一定要对应mapper映射xml文件的所在路径
-
-#logging:
-#  level:
-#    com:
-#      sendtomoon:
-#        dgg: DEBUG

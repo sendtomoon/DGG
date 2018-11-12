@@ -4,12 +4,17 @@ spring:
     url: jdbc:mariadb://192.168.0.11:3306/dgg
     username: dgg
     password: dgg
+    druid :
+      init-method: select 1 from dual
+      web-stat-filter :
+        enabled: true
+      stat-view-servlet:
+        url-pattern: /druid/*
+        reset-enable: 
+        login-username: admin
+        login-password: admin
+        allow: 
+        deny: 
 logging:
   config: classpath:logback-dev.xml
-logback:
-  dataSource:
-    serverName: 127.0.0.1
-    port: 3306
-    databaseName: dgg_log
-    user: dgg_log
-    password: dgg_log
+
