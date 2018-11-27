@@ -25,5 +25,11 @@ public class ExampleController {
 	public String ex2() {
 		return server.insertId();
 	}
+	
+	@RequestMapping(value = "/success")
+	@ResponseBody
+	public String success() {
+		return "success";
+	}
 
 }

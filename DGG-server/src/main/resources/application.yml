@@ -3,6 +3,13 @@ spring:
     name: dgg-server
   profiles:
       active: dev
+  mvc:
+    view:
+      prefix: /WEB-INF/
+      suffix: .html
+  thymeleaf:
+    prefix: classpath:/
+
 godaddy:
   sso-key: sso-key dL3oxj5DL3Mn_WhAknzdqwB8aTStK98moZ6:XSk7ccXquXQwek1cFcw9uQ
   base-url: https://api.godaddy.com/v1/domains
