@@ -6,10 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sendtomoon.dgg.server.base.BaseController;
 import com.sendtomoon.dgg.server.service.impl.ExampleServiceImpl;
 
 @Controller(value = "exampleService")
-public class ExampleController {
+public class ExampleController extends BaseController{
 
 	@Autowired
 	private ExampleServiceImpl server;
