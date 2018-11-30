@@ -12,6 +12,9 @@ import com.sendtomoon.dgg.server.base.BaseController;
 import com.sendtomoon.dgg.server.service.IPInfoService;
 import com.sendtomoon.dgg.server.utils.CommonVO;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
 @Controller
 @RequestMapping(value = "/ip")
 public class IPInfoController extends BaseController {
@@ -19,12 +22,14 @@ public class IPInfoController extends BaseController {
 	@Autowired
 	private IPInfoService iif;
 
+	@ApiOperation(value = "插入IP更新信息")
 	@RequestMapping(value = "/recviceipinfo")
 	@ResponseBody
-	public CommonVO recviceipinfo(@RequestParam(value = "eventName", required = true) String eventName,
-			@RequestParam(value = "ipAddr", required = true) String ipAddr,
-			@RequestParam(value = "ipSource", required = true) String ipSource,
-			@RequestParam(value = "device", required = true) String device) {
+	public CommonVO recviceipinfo(
+			@ApiParam(value = "事件名称") @RequestParam(value = "eventName", required = true) String eventName,
+			@ApiParam(value = "IP地址") @RequestParam(value = "ipAddr", required = true) String ipAddr,
+			@ApiParam(value = "IP来源") @RequestParam(value = "ipSource", required = true) String ipSource,
+			@ApiParam(value = "请求设备") @RequestParam(value = "device", required = true) String device) {
 		return iif.recviceIpInfo(eventName, ipAddr, ipSource, device);
 	}
 
@@ -54,7 +59,7 @@ public class IPInfoController extends BaseController {
 			@RequestParam(value = "ipAddr", required = true) String ipAddr) {
 		return iif.renewdns(dns, name, ipAddr);
 	}
-	
+
 	@RequestMapping(value = "/getdnsname")
 	@ResponseBody
 	public CommonVO getdnsname(@RequestParam(value = "dns", required = true) String dns,
