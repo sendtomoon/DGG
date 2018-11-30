@@ -50,18 +50,22 @@ public class IPInfoServiceImpl extends BaseService implements IPInfoService {
 	}
 
 	@Override
-	public CommonVO getdnslist(String name, String ipAddr) {
+	public CommonVO getdnslist(String domain, String ipAddr) {
 		BatchVO<DNSInfoDTO> vo = new BatchVO<DNSInfoDTO>();
 		String json = null;
 		try {
+			url = url + "/" + domain + "/records/A/";
+			logger.info("getdnslist-param:" + url);
 			json = HttpUtils.invokeHttpGet(url, null, this.setHeaders());
+			logger.info("getdnslist-result:" + json);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("getdnsname-request-error:" + e);
+			return new CommonVO("", "获取失败");
 		}
 		List<DNSInfoDTO> list = JSONArray.parseArray(json, DNSInfoDTO.class);
-		if (StringUtils.isNotEmpty(name) || StringUtils.isNotEmpty(ipAddr)) {
-			list = this.selectList(list, name, ipAddr);
-		}
+//		if (StringUtils.isNotEmpty(domain) || StringUtils.isNotEmpty(ipAddr)) {
+//			list = this.selectList(list, domain, ipAddr);
+//		}
 		vo.setDatas(list);
 		vo.setTotal(list.size());
 		return vo;
@@ -154,8 +158,8 @@ public class IPInfoServiceImpl extends BaseService implements IPInfoService {
 	}
 
 	@Override
-	public CommonVO getdnsname(String dns, String name) {
-		final String url = this.url + "/" + dns + "/records/A/" + name;
+	public CommonVO getdnsname(String domain, String name) {
+		final String url = this.url + "/" + domain + "/records/A/" + name;
 		String result = null;
 		try {
 			logger.info("getdnsname-param:" + url);

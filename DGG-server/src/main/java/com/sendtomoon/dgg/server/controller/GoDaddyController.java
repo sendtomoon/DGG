@@ -23,18 +23,18 @@ public class GoDaddyController {
 	@ApiOperation(value = "更新GoDaddy IP", httpMethod = "PUT")
 	@RequestMapping(value = "/renewdns", method = RequestMethod.PUT)
 	@ResponseBody
-	public CommonVO renewdns(@ApiParam(value = "dns域") @RequestParam(value = "dns", required = true) String dns,
+	public CommonVO renewdns(@ApiParam(value = "dns域") @RequestParam(value = "domain", required = true) String domain,
 			@ApiParam(value = "dns名称") @RequestParam(value = "name", required = true) String name,
 			@ApiParam(value = "IP地址") @RequestParam(value = "ipAddr", required = true) String ipAddr) {
-		return iif.renewdns(dns, name, ipAddr);
+		return iif.renewdns(domain, name, ipAddr);
 	}
 
 	@ApiOperation(value = "获取GoDaddy IP信息", httpMethod = "GET")
 	@RequestMapping(value = "/getdnsname", method = RequestMethod.GET)
 	@ResponseBody
-	public CommonVO getdnsname(@ApiParam(value = "dns域") @RequestParam(value = "dns", required = true) String dns,
+	public CommonVO getdnsname(@ApiParam(value = "dns域") @RequestParam(value = "domain", required = true) String domain,
 			@ApiParam(value = "dns名称") @RequestParam(value = "name", required = true) String name) {
-		return iif.getdnsname(dns, name);
+		return iif.getdnsname(domain, name);
 	}
 
 	@ApiOperation(value = "获取GoDaddy DNS IP信息", httpMethod = "GET")
