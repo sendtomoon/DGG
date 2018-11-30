@@ -154,7 +154,7 @@ public class IPInfoServiceImpl extends BaseService implements IPInfoService {
 	}
 
 	@Override
-	public CommonVO getdnsnamelist(String dns, String name) {
+	public CommonVO getdnsname(String dns, String name) {
 		final String url = this.url + "/" + dns + "/records/A/" + name;
 		String result = null;
 		try {
