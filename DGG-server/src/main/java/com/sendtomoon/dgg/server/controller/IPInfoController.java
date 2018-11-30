@@ -17,7 +17,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 @Controller
-@RequestMapping(value = "/ip")
+@RequestMapping(value = "/dns")
 public class IPInfoController extends BaseController {
 
 	@Autowired
@@ -34,37 +34,41 @@ public class IPInfoController extends BaseController {
 		return iif.recviceIpInfo(eventName, ipAddr, ipSource, device);
 	}
 
-	@RequestMapping(value = "/getdnslist")
+	@ApiOperation(value = "获取GoDaddy DNS IP信息", httpMethod = "GET")
+	@RequestMapping(value = "/getdnslist", method = RequestMethod.GET)
 	@ResponseBody
-	public CommonVO getdnslist(@RequestParam(value = "name", required = false) String name,
-			@RequestParam(value = "ipAddr", required = false) String ipAddr) {
+	public CommonVO getdnslist(@ApiParam(value = "dns名称") @RequestParam(value = "name", required = false) String name,
+			@ApiParam(value = "IP地址") @RequestParam(value = "ipAddr", required = false) String ipAddr) {
 		return iif.getdnslist(name, ipAddr);
 	}
 
-	@RequestMapping(value = "/getiprenewlist")
+	@ApiOperation(value = "获取IP更新信息", httpMethod = "GET")
+	@RequestMapping(value = "/getiprenewlist", method = RequestMethod.GET)
 	@ResponseBody
-	public CommonVO getIpRenewList(@RequestParam(value = "id", required = false) String id,
-			@RequestParam(value = "eventName", required = false) String eventName,
-			@RequestParam(value = "ipAddr", required = false) String ipAddr,
-			@RequestParam(value = "ipSource", required = false) String ipSource,
-			@RequestParam(value = "device", required = false) String device,
-			@RequestParam(value = "startDate", required = false) Date startDate,
-			@RequestParam(value = "endDate", required = false) Date endDate) {
+	public CommonVO getIpRenewList(@ApiParam(value = "ID") @RequestParam(value = "id", required = false) String id,
+			@ApiParam(value = "事件名称") @RequestParam(value = "eventName", required = false) String eventName,
+			@ApiParam(value = "IP地址") @RequestParam(value = "ipAddr", required = false) String ipAddr,
+			@ApiParam(value = "来源IP") @RequestParam(value = "ipSource", required = false) String ipSource,
+			@ApiParam(value = "请求设备") @RequestParam(value = "device", required = false) String device,
+			@ApiParam(value = "开始日期") @RequestParam(value = "startDate", required = false) Date startDate,
+			@ApiParam(value = "结束日期") @RequestParam(value = "endDate", required = false) Date endDate) {
 		return iif.getdnslist(id, eventName, ipAddr, ipSource, device, startDate, endDate);
 	}
 
-	@RequestMapping(value = "/renewdns")
+	@ApiOperation(value = "更新GoDaddy IP", httpMethod = "PUT")
+	@RequestMapping(value = "/renewdns", method = RequestMethod.PUT)
 	@ResponseBody
-	public CommonVO renewdns(@RequestParam(value = "dns", required = true) String dns,
-			@RequestParam(value = "name", required = true) String name,
-			@RequestParam(value = "ipAddr", required = true) String ipAddr) {
+	public CommonVO renewdns(@ApiParam(value = "dns域") @RequestParam(value = "dns", required = true) String dns,
+			@ApiParam(value = "dns名称") @RequestParam(value = "name", required = true) String name,
+			@ApiParam(value = "IP地址") @RequestParam(value = "ipAddr", required = true) String ipAddr) {
 		return iif.renewdns(dns, name, ipAddr);
 	}
 
-	@RequestMapping(value = "/getdnsname")
+	@ApiOperation(value = "获取GoDaddy IP信息", httpMethod = "GET")
+	@RequestMapping(value = "/getdnsname", method = RequestMethod.GET)
 	@ResponseBody
-	public CommonVO getdnsname(@RequestParam(value = "dns", required = true) String dns,
-			@RequestParam(value = "name", required = true) String name) {
+	public CommonVO getdnsname(@ApiParam(value = "dns域") @RequestParam(value = "dns", required = true) String dns,
+			@ApiParam(value = "dns名称") @RequestParam(value = "name", required = true) String name) {
 		return iif.getdnsname(dns, name);
 	}
 

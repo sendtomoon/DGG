@@ -154,15 +154,15 @@ public class IPInfoServiceImpl extends BaseService implements IPInfoService {
 	}
 
 	@Override
-	public CommonVO getdnsname(String dns, String name) {
+	public CommonVO getdnsnamelist(String dns, String name) {
 		final String url = this.url + "/" + dns + "/records/A/" + name;
 		String result = null;
 		try {
-			logger.info("renewdns-param:" + url);
+			logger.info("getdnsname-param:" + url);
 			result = HttpUtils.invokeHttpGet(url, null, this.setHeaders());
-			logger.info("renewdns-result:" + result);
-		} catch (IOException e) {
-			logger.error("renewdns-request-error:" + e);
+			logger.info("getdnsname-result:" + result);
+		} catch (Exception e) {
+			logger.error("getdnsname-request-error:" + e);
 			return new CommonVO("", "获取失败");
 		}
 		BatchVO<DNSInfoDTO> respVO = new BatchVO<DNSInfoDTO>();
