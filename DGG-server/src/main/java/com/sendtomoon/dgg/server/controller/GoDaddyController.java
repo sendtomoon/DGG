@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.sendtomoon.dgg.server.service.IPInfoService;
 import com.sendtomoon.dgg.server.utils.CommonVO;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 @Controller
+@Api(value = "GoDaddy域名管理", tags = { "GoDaddy域名管理" })
 @RequestMapping(value = "/godaddy")
 public class GoDaddyController {
 
