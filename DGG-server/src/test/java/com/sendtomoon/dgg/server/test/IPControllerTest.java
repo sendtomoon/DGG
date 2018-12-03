@@ -20,11 +20,4 @@ public class IPControllerTest {
 	@Autowired
 	private MockMvc mvc;
 
-	@Test
-	public void test1() throws Exception {
-		mvc.perform(post());
-		
-		this.mvc.perform(get("/sboot/vehicle").accept(MediaType.TEXT_PLAIN)).andExpect(status().isOk())
-				.andExpect(content().string("Honda Civic"));
-	}
 }

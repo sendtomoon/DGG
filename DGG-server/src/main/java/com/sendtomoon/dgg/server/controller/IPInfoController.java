@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiParam;
 
 @Controller
 @RequestMapping(value = "/dns")
-@Api(value = "动态更新IP地址", tags = { "动态更新IP地址" })
+@Api(value = "动态更新IP地址")
 public class IPInfoController extends BaseController {
 
 	@Autowired

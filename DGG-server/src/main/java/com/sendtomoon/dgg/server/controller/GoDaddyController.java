@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 @Controller
-@Api(value = "GoDaddy域名管理", tags = { "GoDaddy域名管理" })
+@Api(value = "GoDaddy域名管理")
 @RequestMapping(value = "/godaddy")
 public class GoDaddyController {
 
