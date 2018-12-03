@@ -13,11 +13,13 @@ import com.sendtomoon.dgg.server.base.BaseController;
 import com.sendtomoon.dgg.server.service.IPInfoService;
 import com.sendtomoon.dgg.server.utils.CommonVO;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 @Controller
 @RequestMapping(value = "/dns")
+@Api(value = "动态更新IP地址", tags = { "动态更新IP地址" })
 public class IPInfoController extends BaseController {
 
 	@Autowired
