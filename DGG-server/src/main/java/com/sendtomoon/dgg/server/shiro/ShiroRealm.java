@@ -1,25 +1,32 @@
 package com.sendtomoon.dgg.server.shiro;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.realm.Realm;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+
+import com.sendtomoon.dgg.server.dto.auth.AccountDTO;
+import com.sendtomoon.dgg.server.utils.CipherUtil;
 
 public class ShiroRealm extends AuthorizingRealm {
 
-
-	/**
-	 * 账户类服务层注入
-	 */
-	@Autowired
-	private AccountService accountService;
-
-	private Logger logger = LoggerFactory.getLogger(ShiroRealm.class);
+	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	/*
 	 * 登录信息和用户验证信息验证(non-Javadoc)
@@ -35,21 +42,21 @@ public class ShiroRealm extends AuthorizingRealm {
 		AuthenticationInfo authenticationInfo = null;
 		String username = new String(token.getUsername());// 用户名
 		String password = new String(token.getPassword());// 密码
-		Account a = accountService.findFormatByLoginName(username);// 通过登录名 寻找用户
+		AccountDTO a = new AccountDTO();
 		if (a != null) {
 			// 组合username,两次迭代，对密码进行加密
 			String pwdEncrypt = CipherUtil.createPwdEncrypt(username, password, a.getSalt());
 			if (a.getPassword().equals(pwdEncrypt)) {
 				authenticationInfo = new SimpleAuthenticationInfo(a.getLoginName(), password, getName());
-				try {
-					Org org = accountService.getOrganization(a.getOrgId());// 获取组织信息
-					a.setOrgRootId(org.getId());// root单位id
-					a.setOrgCode(org.getCode());// root单位编码
-					a.setDistCode(org.getDistcode());// root单位地区
-				} catch (Exception e) {
-					logger.error("############同步组织信息到session中失败##########", e);
-				}
-				this.setSession(Const.SESSION_USER, a);
+//				try {
+//					Org org = accountService.getOrganization(a.getOrgId());// 获取组织信息
+//					a.setOrgRootId(org.getId());// root单位id
+//					a.setOrgCode(org.getCode());// root单位编码
+//					a.setDistCode(org.getDistcode());// root单位地区
+//				} catch (Exception e) {
+//					logger.error("############同步组织信息到session中失败##########", e);
+//				}
+				this.setSession("sessionUser", a);
 				return authenticationInfo;
 			} else {
 				throw new IncorrectCredentialsException(); /* 错误认证异常 */
@@ -94,9 +101,5 @@ public class ShiroRealm extends AuthorizingRealm {
 			}
 		}
 	}
-
-
-	
-
 
 }
