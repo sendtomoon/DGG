@@ -1,9 +1,15 @@
 spring:
-  datasource:
+  datasource-ip:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://192.168.0.11:3306/dgg
     username: dgg
     password: dgg
+  datasource-auth:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://192.168.0.11:3306/dgg_auth
+    username: dgg
+    password: dgg
+  datasource:
     druid :
       init-method: select 1 from dual
       web-stat-filter :
