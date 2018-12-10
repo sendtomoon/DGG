@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 
+import com.sendtomoon.dgg.server.dao.UserAuthDAO;
 import com.sendtomoon.dgg.server.dto.auth.AccountDTO;
 import com.sendtomoon.dgg.server.utils.CipherUtil;
 
@@ -28,35 +29,23 @@ public class ShiroRealm extends AuthorizingRealm {
 
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	/*
-	 * 登录信息和用户验证信息验证(non-Javadoc)
-	 * 
-	 * @see
-	 * org.apache.shiro.realm.AuthenticatingRealm#doGetAuthenticationInfo(org.apache
-	 * .shiro.authc.AuthenticationToken)
-	 */
+	@Autowired
+	private UserAuthDAO uad;
+
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken)
 			throws AuthenticationException {
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
 		AuthenticationInfo authenticationInfo = null;
-		String username = new String(token.getUsername());// 用户名
+		String loginName = new String(token.getUsername());// 用户名
 		String password = new String(token.getPassword());// 密码
-		AccountDTO a = new AccountDTO();
-		if (a != null) {
+		AccountDTO account = uad.getUserInfoForLogin(loginName);
+		if (account != null) {
 			// 组合username,两次迭代，对密码进行加密
-			String pwdEncrypt = CipherUtil.createPwdEncrypt(username, password, a.getSalt());
-			if (a.getPassword().equals(pwdEncrypt)) {
-				authenticationInfo = new SimpleAuthenticationInfo(a.getLoginName(), password, getName());
-//				try {
-//					Org org = accountService.getOrganization(a.getOrgId());// 获取组织信息
-//					a.setOrgRootId(org.getId());// root单位id
-//					a.setOrgCode(org.getCode());// root单位编码
-//					a.setDistCode(org.getDistcode());// root单位地区
-//				} catch (Exception e) {
-//					logger.error("############同步组织信息到session中失败##########", e);
-//				}
-				this.setSession("sessionUser", a);
+			String pwdEncrypt = CipherUtil.createPwdEncrypt(loginName, password, account.getSalt());
+			if (account.getPassword().equals(pwdEncrypt)) {
+				authenticationInfo = new SimpleAuthenticationInfo(account.getLoginName(), password, getName());
+				this.setSession("sessionUser", account);
 				return authenticationInfo;
 			} else {
 				throw new IncorrectCredentialsException(); /* 错误认证异常 */

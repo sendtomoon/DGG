@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sendtomoon.dgg.server.dao.AccountDAO">
+
+
+	<select id="getUserInfoForLogin" parameterType="String" resultType="AccountDTO">
+	    select 
+	        id as id,
+	        user_id as userId,
+	        user_name as userName,
+	        salt as salt,
+	        login_name as loginName
+	    from
+	        dgg_user_base_info
+	    where
+	        user_name = #{userName}
+	</select>
+	
+	<insert id="insertNewUser" parameterType="AccountDTO" >
+	    insert into 
+	        dgg_user_base_info
+	        (id,user_name,user_id,password,login_name,salt,created_time,updated_time,created_by,updated_by)
+	    values
+	        (#{id},#{userName},#{userId},#{password},#{loginName},#{salt},now(),now(),#{createdBy},#{updatedBy})
+	</insert>
+	
+	<insert id="existUser" resultType="int" parameterType="AccountDTO">
+	    select 
+	        count(1) 
+	    from 
+	        dgg_user_base_info
+	    where
+	        user_name = #{userName} or login_name = #{loginName}
+	</insert>
+
+</mapper>
