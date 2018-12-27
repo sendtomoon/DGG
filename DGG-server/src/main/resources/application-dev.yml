@@ -1,7 +1,7 @@
 spring:
   datasource:
     driverClassName: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://192.168.0.11:3306/dgg
+    url: jdbc:mariadb://192.168.0.10:3307/dgg
     username: dgg
     password: dgg
     druid :

@@ -49,12 +49,13 @@ public class IPInfoServiceImpl extends BaseService implements IPInfoService {
 
 	@Override
 	public CommonVO getdnslist(String domain, String ipAddr) {
+		StringBuffer sb = new StringBuffer(url);
+		sb.append("/").append(domain).append("/records/A/");
 		BatchVO<DNSInfoDTO> vo = new BatchVO<DNSInfoDTO>();
 		String json = null;
 		try {
-			url = url + "/" + domain + "/records/A/";
-			logger.info("getdnslist-param:" + url);
-			json = HttpUtils.invokeHttpGet(url, null, this.setHeaders());
+			logger.info("getdnslist-param:" + sb.toString());
+			json = HttpUtils.invokeHttpGet(sb.toString(), null, this.setHeaders());
 			logger.info("getdnslist-result:" + json);
 		} catch (IOException e) {
 			logger.error("getdnsname-request-error:" + e);
