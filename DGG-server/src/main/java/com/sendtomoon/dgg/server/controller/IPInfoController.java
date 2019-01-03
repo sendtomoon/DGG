@@ -19,14 +19,14 @@ import io.swagger.annotations.ApiParam;
 
 @Controller
 @RequestMapping(value = "/dns")
-@Api(value = "动态更新IP地址")
+@Api(value = "动态更新IP地址",tags="DDNS管理")
 public class IPInfoController extends BaseController {
 
 	@Autowired
 	private IPInfoService iif;
 
 	@ApiOperation(value = "插入IP更新信息", httpMethod = "PUT")
-	@RequestMapping(value = "/recviceipinfo", method = RequestMethod.PUT)
+	@RequestMapping(value = "/recviceIPInfo", method = RequestMethod.PUT)
 	@ResponseBody
 	public CommonVO recviceipinfo(
 			@ApiParam(value = "事件名称") @RequestParam(value = "eventName", required = true) String eventName,
@@ -37,7 +37,7 @@ public class IPInfoController extends BaseController {
 	}
 
 	@ApiOperation(value = "获取IP更新信息", httpMethod = "GET")
-	@RequestMapping(value = "/getiprenewlist", method = RequestMethod.GET)
+	@RequestMapping(value = "/getIPRenewList", method = RequestMethod.GET)
 	@ResponseBody
 	public CommonVO getIpRenewList(@ApiParam(value = "ID") @RequestParam(value = "id", required = false) String id,
 			@ApiParam(value = "事件名称") @RequestParam(value = "eventName", required = false) String eventName,

@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 @Controller
-@Api(value = "GoDaddy域名管理")
+@Api(value = "GoDaddy域名管理",tags="GoDaddy域名管理")
 @RequestMapping(value = "/godaddy")
 public class GoDaddyController {
 
@@ -23,7 +23,7 @@ public class GoDaddyController {
 	private IPInfoService iif;
 
 	@ApiOperation(value = "更新GoDaddy IP", httpMethod = "PUT")
-	@RequestMapping(value = "/renewdns", method = RequestMethod.PUT)
+	@RequestMapping(value = "/renewDNS", method = RequestMethod.PUT)
 	@ResponseBody
 	public CommonVO renewdns(@ApiParam(value = "dns域") @RequestParam(value = "domain", required = true) String domain,
 			@ApiParam(value = "dns名称") @RequestParam(value = "name", required = true) String name,
@@ -32,7 +32,7 @@ public class GoDaddyController {
 	}
 
 	@ApiOperation(value = "获取GoDaddy IP信息", httpMethod = "GET")
-	@RequestMapping(value = "/getdnsname", method = RequestMethod.GET)
+	@RequestMapping(value = "/getdnsName", method = RequestMethod.GET)
 	@ResponseBody
 	public CommonVO getdnsname(@ApiParam(value = "dns域") @RequestParam(value = "domain", required = true) String domain,
 			@ApiParam(value = "dns名称") @RequestParam(value = "name", required = true) String name) {
@@ -40,7 +40,7 @@ public class GoDaddyController {
 	}
 
 	@ApiOperation(value = "获取GoDaddy DNS IP信息", httpMethod = "GET")
-	@RequestMapping(value = "/getdnslist", method = RequestMethod.GET)
+	@RequestMapping(value = "/getdnsList", method = RequestMethod.GET)
 	@ResponseBody
 	public CommonVO getdnslist(@ApiParam(value = "dns名称") @RequestParam(value = "name", required = false) String name,
 			@ApiParam(value = "IP地址") @RequestParam(value = "ipAddr", required = false) String ipAddr) {

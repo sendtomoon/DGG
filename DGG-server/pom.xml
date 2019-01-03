@@ -228,7 +228,7 @@
 
 	<!-- Package as an executable jar -->
 	<build>
-		<finalName>ROOT</finalName>
+		<finalName>dgg-server</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
