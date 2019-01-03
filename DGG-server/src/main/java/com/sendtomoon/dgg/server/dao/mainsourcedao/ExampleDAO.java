@@ -1,4 +1,4 @@
-package com.sendtomoon.dgg.server.dao;
+package com.sendtomoon.dgg.server.dao.mainsourcedao;
 
 import org.springframework.stereotype.Repository;
 

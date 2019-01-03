@@ -14,7 +14,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sendtomoon.dgg.server.base.BaseService;
-import com.sendtomoon.dgg.server.dao.IPInfoDAO;
+import com.sendtomoon.dgg.server.dao.mainsourcedao.IPInfoDAO;
 import com.sendtomoon.dgg.server.dto.DNSInfoDTO;
 import com.sendtomoon.dgg.server.dto.IPInfoDTO;
 import com.sendtomoon.dgg.server.service.IPInfoService;
@@ -48,7 +48,7 @@ public class IPInfoServiceImpl extends BaseService implements IPInfoService {
 	}
 
 	@Override
-	public CommonVO getdnslist(String domain, String ipAddr) {
+	public CommonVO getdnslist(String domain) {
 		StringBuffer sb = new StringBuffer(url);
 		sb.append("/").append(domain).append("/records/A/");
 		BatchVO<DNSInfoDTO> vo = new BatchVO<DNSInfoDTO>();
@@ -59,7 +59,7 @@ public class IPInfoServiceImpl extends BaseService implements IPInfoService {
 			logger.info("getdnslist-result:" + json);
 		} catch (IOException e) {
 			logger.error("getdnsname-request-error:" + e);
-			return new CommonVO("", "获取失败");
+			return new CommonVO("1", "获取失败");
 		}
 		List<DNSInfoDTO> list = JSONArray.parseArray(json, DNSInfoDTO.class);
 		vo.setDatas(list);

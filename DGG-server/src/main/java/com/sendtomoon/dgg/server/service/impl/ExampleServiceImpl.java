@@ -5,7 +5,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sendtomoon.dgg.server.dao.ExampleDAO;
+import com.sendtomoon.dgg.server.dao.mainsourcedao.ExampleDAO;
 import com.sendtomoon.dgg.server.dto.ExampleDTO;
 import com.sendtomoon.dgg.server.service.ExampleService;
 

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sendtomoon.dgg.server.base.BaseService;
-import com.sendtomoon.dgg.server.dao.UserAuthDAO;
+import com.sendtomoon.dgg.server.dao.mainsourcedao.UserAuthDAO;
 import com.sendtomoon.dgg.server.dto.auth.AccountDTO;
 import com.sendtomoon.dgg.server.service.AccountService;
 

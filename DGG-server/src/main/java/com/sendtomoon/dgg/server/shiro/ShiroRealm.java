@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 
-import com.sendtomoon.dgg.server.dao.UserAuthDAO;
+import com.sendtomoon.dgg.server.dao.mainsourcedao.UserAuthDAO;
 import com.sendtomoon.dgg.server.dto.auth.AccountDTO;
 import com.sendtomoon.dgg.server.utils.CipherUtil;
 
