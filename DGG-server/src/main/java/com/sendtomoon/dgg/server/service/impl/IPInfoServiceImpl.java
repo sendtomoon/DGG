@@ -96,7 +96,7 @@ public class IPInfoServiceImpl extends BaseService implements IPInfoService {
 	public CommonVO renewdns(String dns, String name, String ipAddr) {
 		ipAddr = this.cutSpace(ipAddr);
 		if (!this.isIP(ipAddr)) {
-			return new CommonVO("", "IP地址格式错误");
+			return new CommonVO("1", "IP地址格式错误");
 		}
 		final String url = this.url + "/" + dns + "/records/A/" + name;
 		String json = "[{\"data\":\"" + ipAddr + "\"}]";

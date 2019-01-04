@@ -4,11 +4,11 @@ import java.io.Serializable;
 
 import org.apache.ibatis.type.Alias;
 
+import com.sendtomoon.dgg.server.base.BaseDTO;
+
 @Alias("ExampleDTO")
-public class ExampleDTO implements Serializable {
-	/**
-		 * 
-		 */
+public class ExampleDTO extends BaseDTO implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 	private String id;
 
