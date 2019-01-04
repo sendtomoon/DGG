@@ -14,6 +14,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
+import com.sendtomoon.dgg.server.base.BaseDTO;
 
 @Configuration
 @MapperScan(basePackages = DGGMainDatasource.PACKAGE, sqlSessionFactoryRef = "dggMainSqlSessionFactory")
@@ -38,10 +39,12 @@ public class DGGMainDatasource {
 
 	@Bean(name = "dggMainSqlSessionFactory")
 	@Primary
-	public SqlSessionFactory mysqlSqlSessionFactory(@Qualifier("dggMainDatasource") DataSource dataSource)
+	public SqlSessionFactory dggMainSqlSessionFactory(@Qualifier("dggMainDatasource") DataSource dataSource)
 			throws Exception {
-		final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
+		sessionFactory.setTypeAliasesSuperType(BaseDTO.class);
+		sessionFactory.setTypeAliasesPackage("com.sendtomoon.dgg.server.dto");
 		// 如果不使用xml的方式配置mapper，则可以省去下面这行mapper location的配置。
 		sessionFactory.setMapperLocations(
 				new PathMatchingResourcePatternResolver().getResources(DGGMainDatasource.MAPPER_LOCATION));
