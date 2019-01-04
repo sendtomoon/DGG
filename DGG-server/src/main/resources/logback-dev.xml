@@ -120,8 +120,8 @@
 	<appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
 		<connectionSource	class="ch.qos.logback.core.db.DataSourceConnectionSource">
 			<dataSource class="org.mariadb.jdbc.MariaDbPoolDataSource">
-				<serverName>192.168.0.10</serverName>
-				<port>3307</port>
+				<serverName>192.168.0.18</serverName>
+				<port>3306</port>
 				<databaseName>dgg_log</databaseName>
 				<user>dgg_log</user>
 				<password>dgg_log</password>

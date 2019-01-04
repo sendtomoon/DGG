@@ -4,7 +4,7 @@ spring:
       mysql:
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: org.mariadb.jdbc.Driver
-        url: jdbc:mariadb://192.168.0.10:3307/dgg?useUnicode=true&characterEncoding=UTF-8&rewriteBatchedStatements=true&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull
+        url: jdbc:mariadb://192.168.0.18:3306/dgg?useUnicode=true&characterEncoding=UTF-8&rewriteBatchedStatements=true&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull
         username: dgg
         password: dgg
 #      oracle: 
